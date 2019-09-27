@@ -1,0 +1,15 @@
+{
+  "name": "cadastroexterno",
+  "version": "1.0.0",
+  "description": "robo para inserir corretores no mongo",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gburis",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^5.7.1",
+    "nodemon": "^1.19.2"
+  }
+}
