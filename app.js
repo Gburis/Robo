@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-const susepDB = require('')
-
 const Job = {
     readFile:()=>{
 
