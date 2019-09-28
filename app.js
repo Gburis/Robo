@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+const db = require('./controlles/conectionDB');
+
 
 const Job = {
     readFile:()=>{
@@ -7,9 +8,9 @@ const Job = {
     saveToMongo:()=>{
 
     },
-    start:()=>{
-        console.log('oi');
+    init:()=>{
+        db.start();
     }
 }
 
-Job.start();
+Job.init();
