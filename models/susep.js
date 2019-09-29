@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const SusepSchema = new Schema({
+const susepSchema = new Schema({
     corretores:[
         {
            cnpj: { type: String, required: false },
@@ -16,11 +16,11 @@ const SusepSchema = new Schema({
            telef: { type: Number, required: false },
            situacao: { type: String, required: false },
            dt_conc: { type: Date, required: false },
-           ult_alt: { type: String, required: false }
+           ult_alt: { type: Date, required: false }
         }
     ]
 });
 
-const Susep = mongoose.model('susep', SusepSchema);
+const Susep = mongoose.model('susep', susepSchema);
 
 module.exports = Susep;
