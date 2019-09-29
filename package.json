@@ -9,6 +9,7 @@
   "author": "Gburis",
   "license": "ISC",
   "dependencies": {
+    "fast-csv": "^3.4.0",
     "mongoose": "^5.7.1",
     "nodemon": "^1.19.2"
   }

@@ -5,7 +5,7 @@ const Job = {
     readFile:()=>{
 
     },
-    saveToMongo: async ()=>{
+    saveAndUpadateToMongo: async ()=>{
 
         try{
             let susep = await Susep.find().limit(1); 
@@ -66,7 +66,7 @@ const Job = {
     },
     init:async()=>{
         await db.start();
-        await Job.saveToMongo();
+        await Job.saveAndUpadateToMongo();
         await db.close();
     }
 }
