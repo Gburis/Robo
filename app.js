@@ -1,74 +1,51 @@
 const db = require('./controlles/conectionDB');
 const Susep = require('./models/susep');
-
+const fileCsv = require('./controlles/csvOnJson');
 const Job = {
-    readFile:()=>{
 
+    readFile: async ()=>{
+        let susep =  await fileCsv.convert();
+        return susep;
+        
     },
-    saveToMongo: async ()=>{
-
+    saveAndUpadateToMongo: async ()=>{
         try{
-            let susep = await Susep.find().limit(1); 
-            const id = susep.length > 0 ? susep[0]._id : '';
-            
-            if(susep.length == 0){
-                susep = new Susep(
-                    {
-                        corretores:[
-                            {
-                                cnpj: '51.765.387/0001-08',
-                                tipo_pessoa: 'j',
-                                cod_susep: '123Susep',
-                                nome: 'Gabriel Olimpio',
-                                ender: 'Rua Gino Arduini 391',
-                                bairro: 'Umuarama',
-                                cidade: 'Itanhaém',
-                                estado: 'SP',
-                                cep: 11740000,
-                                telef: 13997051292,
-                                situacao: 'Ativo',
-                                dt_conc: new Date(),
-                                ult_alt: new Date()
-                            }
-                        ]
-                    }
-                );
-                console.log('2: Cadastros dos corretores realizado');
+            let corretores = await Job.readFile();
+            corretores.forEach( async (e, i)=>{
+                let percente = ((i * 100) / corretores.length);    
+                if(`${percente}`.length < 3) console.log(`${percente}%`);
 
-            }else{
-                
-                await Susep.updateOne({_id: id},
-                    {
-                        corretores:[
-                            {
-                                cnpj: '51.765.387/0001-03',
-                                tipo_pessoa: 'j',
-                                cod_susep: '123Susep',
-                                nome: 'Rafael Olimpio 3',
-                                ender: 'Rua Gino Arduini 393',
-                                bairro: 'Umuarama',
-                                cidade: 'Itanhaém',
-                                estado: 'SP',
-                                cep: 11740000,
-                                telef: 13997051292,
-                                situacao: 'Ativo',
-                                dt_conc: new Date(),
-                                ult_alt: new Date()
-                            }
-                        ]
-                    }
-                )
-                console.log('2: Atualização dos cadastros realizada com exito');
-            }
+                if(e.tipo_pessoa != 'F'){
+                    susep = new Susep(e);
+                    await susep.save();
+                }
+            })
+            console.log('Cadastro dos corretores realizado');
+
         }catch(err){
             console.log(err);
+
+        }
+    },
+    delete: async () =>{
+        try{
+            await Susep.deleteMany({});
+            console.log('Deletando base antiga');
+            console.log('Base deletada');
+
+        }catch(err){
+            console.log('erro ao deletar', err);
+
         }
     },
     init:async()=>{
         await db.start();
-        await Job.saveToMongo();
+        await Job.delete();
+        await Job.saveAndUpadateToMongo();
         await db.close();
+
     }
+
 }
 
 Job.init();
