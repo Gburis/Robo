@@ -21,6 +21,6 @@ const susepSchema = new Schema({
     ]
 });
 
-const Susep = mongoose.model('pokedex', susepSchema);
+const Susep = mongoose.model('susep', susepSchema);
 
 module.exports = Susep;

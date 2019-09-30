@@ -1,9 +1,12 @@
 const db = require('./controlles/conectionDB');
 const Susep = require('./models/susep');
-
+const fileCsv = require('./controlles/csvOnJson');
 const Job = {
-    readFile:()=>{
-
+    readFile: async ()=>{
+        let susep =  await fileCsv.convert();
+        console.log('2: arquivo CSV processado');
+        return susep;
+        
     },
     saveAndUpadateToMongo: async ()=>{
 
@@ -33,6 +36,7 @@ const Job = {
                         ]
                     }
                 );
+                await susep.save();
                 console.log('3: Cadastros dos corretores realizado');
 
             }else{

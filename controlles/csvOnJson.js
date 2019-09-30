@@ -1,13 +1,12 @@
 const file = require('fs');
-const csv=require('csvtojson')
+const csv = require('csvtojson');
 
-const csvToJson = {
-    readerCsv: async ()=>{
+const fileCsv = {
+    convert:async ()=>{
         const csvFilePath= './csv/pokemon.csv';
-        const jsonArray = await csv().fromFile(csvFilePath);
-
-        return jsonArray;
+        return await csv().fromFile(csvFilePath);
     }
-} 
+}
 
-console.log(csvToJson.readerCsv());
+module.exports = fileCsv;
+

@@ -4,7 +4,7 @@ const db = {
     start:async ()=>{
         mongoose.Promise = global.Promise;
 
-        mongoose.connect('mongodb://localhost:27017/pokedexs',{
+        mongoose.connect('mongodb://localhost:23456/susep',{
             useNewUrlParser: true,
             useUnifiedTopology: true
             
