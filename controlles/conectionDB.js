@@ -1,17 +1,18 @@
+const config = require('../config')
 const mongoose = require('mongoose');
 
 const db = {
     start:async ()=>{
         mongoose.Promise = global.Promise;
 
-        mongoose.connect('mongodb://localhost:23456/susep',{
+        mongoose.connect(config.database,{
             useNewUrlParser: true,
             useUnifiedTopology: true
             
         });
 
         mongoose.connection.once('open',()=>{
-            console.log('1: conexão estabelecida');
+            console.log('Conexão com mongoDB estabelecida '+new Date());
         
         }).on('erro', (err)=>{
             console.log('error: ', err);
@@ -20,7 +21,7 @@ const db = {
     },
     close:async ()=>{
         mongoose.connection.close(()=>{
-            console.log('4: conexão encerrada');
+            console.log('Conexão com mongoDB encerrada '+new Date());
 
         });
     }
