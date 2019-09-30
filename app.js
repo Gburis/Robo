@@ -33,7 +33,7 @@ const Job = {
                         ]
                     }
                 );
-                console.log('2: Cadastros dos corretores realizado');
+                console.log('3: Cadastros dos corretores realizado');
 
             }else{
                 
@@ -58,7 +58,7 @@ const Job = {
                         ]
                     }
                 )
-                console.log('2: Atualização dos cadastros realizada com exito');
+                console.log('3: Atualização dos cadastros realizada com exito');
             }
         }catch(err){
             console.log(err);

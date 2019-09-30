@@ -20,7 +20,7 @@ const db = {
     },
     close:async ()=>{
         mongoose.connection.close(()=>{
-            console.log('3: conexão encerrada');
+            console.log('4: conexão encerrada');
 
         });
     }
